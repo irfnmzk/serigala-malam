@@ -1,4 +1,5 @@
 import { logger } from "../../utils/logger";
+import { timeDiff } from "../../utils/time";
 
 export type Phase = "lobby" | "night" | "day" | "dusk";
 
@@ -17,9 +18,13 @@ export class Game {
     if (this.phase === "lobby") return this._updateLobby();
   }
 
+  public start() {
+    this.started = true;
+  }
+
   private _updateLobby() {
     if (!this.started) {
-      const diff = Math.floor((Date.now() - this.gameCreated) / 1000);
+      const diff = timeDiff(this.gameCreated);
       const secondsRemaining = 61 - diff;
 
       if ([60, 30, 10].includes(secondsRemaining)) {

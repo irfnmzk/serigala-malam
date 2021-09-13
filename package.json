@@ -1,0 +1,21 @@
+{
+  "name": "serigala-malam",
+  "version": "0.1.0",
+  "description": "A werewolf chatbot game",
+  "main": "dist/index.js",
+  "repository": "https://github.com/irfnmzk/serigala-malam.git",
+  "author": "Irfan Marzuki <irfnmzk@gmail.com>",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "build": "yarn clean && tsc",
+    "clean": "rimraf dist/",
+    "dev": "ts-node-dev --respawn --transpile-only src/index.ts",
+    "start": "node ."
+  },
+  "devDependencies": {
+    "rimraf": "^3.0.2",
+    "ts-node-dev": "^1.1.8",
+    "typescript": "^4.4.3"
+  }
+}

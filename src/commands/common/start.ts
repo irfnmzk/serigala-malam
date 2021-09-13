@@ -5,7 +5,9 @@ const startCommand: Command = {
   alias: ["/start"],
 
   execute(ctx: CommandContext) {
-    if (ctx.args.length === 0) {
+    console.log(ctx.message);
+
+    if (ctx.args.length === 0 && ctx.message.chat.type === 'private') {
       // send welcome message
       ctx.client.telegram.sendMessage(
         ctx.message.chat.id,

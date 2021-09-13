@@ -5,7 +5,13 @@ const startCommand: Command = {
   alias: ["/start"],
 
   execute(ctx: CommandContext) {
-    console.log(ctx);
+    if (ctx.args.length === 0) {
+      // send welcome message
+      ctx.client.telegram.sendMessage(
+        ctx.message.chat.id,
+        "Selamat datang di indonesia"
+      );
+    }
   },
 };
 

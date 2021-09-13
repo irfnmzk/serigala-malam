@@ -13,7 +13,8 @@ export class GameManager {
     logger.info("starting game manager");
 
     this.eventLoop = setInterval(this._runEventLoop.bind(this), 1000);
-    console.log(this.games);
+
+    this.games.set("100", new Game("100"));
   }
 
   public stop() {
@@ -22,7 +23,11 @@ export class GameManager {
 
   private _runEventLoop() {
     this.games.forEach(async (game) => {
-      console.log(game.chatId);
+      try {
+        await game.update();
+      } catch (err) {
+        console.error(err);
+      }
     });
   }
 }

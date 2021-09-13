@@ -12,4 +12,19 @@ export class Game {
   constructor(public readonly chatId: string) {
     logger.info("game crated on chatId :", chatId);
   }
+
+  public update() {
+    if (this.phase === "lobby") return this._updateLobby();
+  }
+
+  private _updateLobby() {
+    if (!this.started) {
+      const diff = Math.floor((Date.now() - this.gameCreated) / 1000);
+      const secondsRemaining = 61 - diff;
+
+      if ([60, 30, 10].includes(secondsRemaining)) {
+        logger.info(`${secondsRemaining} seconds to start game`);
+      }
+    }
+  }
 }

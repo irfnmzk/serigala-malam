@@ -36,18 +36,9 @@ export function generateSetup(mode: Mode, numPlayer: number) {
   const { roleGuide, fill } = mode;
   const roles: string[] = [];
 
-  // find roleguide based on numPlayer
-  const guideIndex = roleGuide.findIndex((guide) => guide.min === numPlayer);
-
-  if (guideIndex > -1) {
-    // merge guide from index 0 to guideindex + 1
-    const mergedGuide = roleGuide
-      .slice(0, guideIndex + 1)
-      .map((item) => item.guide)
-      .flat();
-
-    roles.push(...extractGuide(mergedGuide));
-  }
+  const filteredGuide = roleGuide.filter((guide) => guide.min <= numPlayer);
+  const mergedGuide = filteredGuide.map((item) => item.guide).flat();
+  roles.push(...extractGuide(mergedGuide));
 
   // fill empty slot from fill keys
   if (roles.length < numPlayer) {

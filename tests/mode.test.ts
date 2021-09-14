@@ -46,5 +46,14 @@ describe("Game Mode", () => {
       "villager",
       "villager",
     ]);
+
+    const roles3 = generateSetup(TEST, 5);
+    expect(roles3).toStrictEqual([
+      "werewolf",
+      "villager",
+      "villager",
+      "villager",
+      "villager",
+    ]);
   });
 });

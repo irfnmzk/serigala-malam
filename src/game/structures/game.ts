@@ -1,3 +1,4 @@
+import Collection from "@discordjs/collection";
 import { logger } from "../../utils/logger";
 import { timeDiff } from "../../utils/time";
 import { Player } from "./player";
@@ -11,10 +12,14 @@ export class Game {
   public gameCreated: number = Date.now();
   public gameStarted: number = Date.now();
 
-  public players: Player[] = [];
+  public players: Collection<string, Player> = new Collection();
 
   constructor(public readonly chatId: string) {
     logger.info("game crated on chatId :", chatId);
+  }
+
+  get playerSize() {
+    return this.players.size;
   }
 
   public update() {

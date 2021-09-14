@@ -1,9 +1,10 @@
+import Collection from "@discordjs/collection";
 import { TelegramClient } from "./client";
 import { Game } from "./game/structures/game";
 import { logger } from "./utils/logger";
 
 export class GameManager {
-  public games: Map<string, Game> = new Map();
+  public games: Collection<string, Game> = new Collection();
 
   private eventLoop?: ReturnType<typeof setInterval>;
 
@@ -14,7 +15,7 @@ export class GameManager {
 
     this.eventLoop = setInterval(this._runEventLoop.bind(this), 1000);
 
-    this.games.set("100", new Game("100"));
+    // this.games.set("100", new Game("100"));
   }
 
   public stop() {

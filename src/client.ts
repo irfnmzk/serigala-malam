@@ -1,3 +1,4 @@
+import Collection from "@discordjs/collection";
 import globby from "globby";
 import TelegramBot from "node-telegram-bot-api";
 import path from "path";
@@ -8,7 +9,7 @@ import { logger } from "./utils/logger";
 export class TelegramClient {
   public telegram: TelegramBot;
 
-  public commands: Map<string, Command> = new Map();
+  public commands: Collection<string, Command> = new Collection();
 
   constructor() {
     this.telegram = new TelegramBot(process.env.TOKEN as string, {
@@ -16,7 +17,7 @@ export class TelegramClient {
     });
 
     this._setup();
-    this._loadCommands()
+    this._loadCommands();
   }
 
   public start() {
@@ -41,6 +42,6 @@ export class TelegramClient {
       this.commands.set(command.name, command);
     }
 
-    logger.info(`${this.commands.size} commands loaded`)
+    logger.info(`${this.commands.size} commands loaded`);
   }
 }

@@ -13,7 +13,11 @@ export function handleMessage(client: TelegramClient, message: Message) {
 
   if (!commandName) return;
 
-  const command = client.commands.get(commandName.substring(1));
+  const command =
+    client.commands.get(commandName.substring(1)) ||
+    client.commands.find(
+      (cmd) => !!cmd.alias && cmd.alias.includes(commandName.substring(1))
+    );
 
   if (!command) return;
 

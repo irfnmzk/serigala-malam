@@ -14,6 +14,17 @@ describe("Game", () => {
     for (const user of users) {
       game.players.set(user.id.toString(), new Player(game, user));
     }
-    expect(game.playerSize).toEqual(2)
+    expect(game.playerSize).toEqual(2);
+  });
+
+  test("should assign roles when start", async () => {
+    const game = new Game("100");
+    const users = createManyMockUser(4);
+    for (const user of users) {
+      game.players.set(user.id.toString(), new Player(game, user));
+    }
+
+    await game.start();
+    expect(game.started).toBe(true);
   });
 });

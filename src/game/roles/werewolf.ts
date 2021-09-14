@@ -1,6 +1,6 @@
 import { Role, RoleFaction } from "../structures/role";
 
-export class Villager extends Role {
+export default class Werewolf extends Role {
   public name: string = "werewolf";
   public faction: RoleFaction = "werewolf";
 }

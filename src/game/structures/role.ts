@@ -12,4 +12,14 @@ export abstract class Role {
   constructor(readonly player: Player) {
     this.game = player.game;
   }
+
+  public onAction() {}
+
+  public onDay() {}
+
+  public onNigth() {}
+
+  public onDusk() {}
+
+  public onDeath() {}
 }
